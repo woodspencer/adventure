@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import libtcodpy as libtcod
-import num_lib
 
 class Screen:
 	""" Screen for viewing the game
@@ -35,21 +34,6 @@ class Player:
 		""" Class initialiser """
 		pass
 	
-
-
-class Game:
-	
-	while not libtcod.console_is_window_closed():
-		libtcod.console_set_foreground_color(0, libtcod.white)
-		libtcod.console_print_left(0, Player.location_x, Player.location_y, libtcod.BKGND_NONE, Player.avatar)
-		libtcod.console_flush()
-	
-		libtcod.console_print_left(0, Player.location_x, Player.location_y, libtcod.BKGND_NONE, ' ')
-	
-		exit = handle_keys()
-		if exit:
-			break
-			
 def handle_keys():
 	
 	key = libtcod.console_wait_for_keypress(True)
@@ -72,6 +56,19 @@ def handle_keys():
 		
 	elif libtcod.console_is_key_pressed(libtcod.KEY_RIGHT):
 		Player.location_x += 1
+
+def Game():
+	
+	while not libtcod.console_is_window_closed():
+		libtcod.console_set_foreground_color(0, libtcod.white)
+		libtcod.console_print_left(0, Player.location_x, Player.location_y, libtcod.BKGND_NONE, Player.avatar)
+		libtcod.console_flush()
+	
+		libtcod.console_print_left(0, Player.location_x, Player.location_y, libtcod.BKGND_NONE, ' ')
+	
+		exit = handle_keys()
+		if exit:
+			break
 		
 if __name__=='__main__':
-	Game
+	Game()
